@@ -1,0 +1,91 @@
+Machine Settings
+
+Hostname: joseferr42
+Username: joseferr
+Passwords: hi@42Porto
+Passphrase: Encrypt42Passphrase
+
+
+
+Confirmar grupos de user
+getent group nome_grupo
+
+Sudo / Su
+To see a list of accounts that belong to the sudoers group run: sudo getent group sudo
+o add a user to the sudoers group, run the following command (as root or an account that already has sudo privileges): usermod -aG sudo <username>(-a for append; -G for supplementary groups; -g for primary groups). Use this command to add user to any other group, if the user has been already created.
+→ Write su - and insert root password ( - fully initializes the environment of the user).
+
+apt update and apt upgrade (do every time before installing new software).
+
+apt install sudo to install necessary packages.
+
+sudo reboot - restart the VM.
+
+sudo -V : check the sudo version and configuration parameters
+
+Login with ssh
+Machine Statis ip 10.11.246.29
+Enter your terminal ssh username@ipaddress -p 4242.
+
+Check password settings and policies for user and for root: chage -l <username>.
+
+
+monitoring.sh
+
+Arquitectura
+uname -a
+
+Núcleos físicos
+rep "physical id" /proc/cpuinfo | wc -l
+
+Núcleos virtuais
+grep processor /proc/cpuinfo | wc -l
+
+Memória RAM
+free --mega | awk '$1 == "Mem:" {printf("(%.2f%%%%)\n", $3/$2*100)}'
+
+Memória em disco
+df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("(%d%%%%)}, use/total*100}'
+
+Percentagem de utilização de CPU
+vmstat 1 4 | tail -1 | awk '{print %15}'
+
+Último reinício
+who -b | awk '$1 == "system" {print $3 " " $4}'
+
+Utilização de LVM
+if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi
+
+Conexões TCP
+ss -ta | grep ESTAB | wc -l
+
+Número de utilizadores
+users | wc -w
+
+Endereço IP e MAC
+ip link | grep "link/ether" | awk '{print $2}'
+
+Número de comandos executados com sudos
+journalctl _COMM=sudo | grep COMMAND | wc -l)
+
+
+
+Wordpress
+
+WP Login
+wp-joseferr
+Password
+12345
+
+
+Check fail2Ban
+sudo fail2ban-client status
+sudo fail2ban-client status sshd
+sudo tail -f /var/log/fail2ban.log
+
+Settings
+enabled  = true
+maxretry = 3
+findtime = 10m
+bantime  = 1d
+port     = 4242
