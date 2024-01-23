@@ -89,3 +89,64 @@ maxretry = 3
 findtime = 10m
 bantime  = 1d
 port     = 4242
+
+
+Check GUI
+ls /usr/bin/*session
+
+UFW
+sudo ufw status
+sudo service ufw status
+dpkg -s ufw
+sudo ufw allow 8080
+sudo ufw status numbered
+sudo ufw delete num_rule
+
+SSH
+sudo service ssh status
+which ssh
+ssh newuser@localhost -p 4242
+
+Check OS
+uname -v or uname --kernel-version
+
+Crontab
+sudo crontab -u root -e
+sudo /etc/init.d/cron stop
+sudo /etc/init.d/cron start
+sudo systemctl disable crontab
+
+Check Groups
+getent group sudo
+getent group user42
+
+Add User
+sudo adduser name_user
+
+Create Group
+sudo addgroup group_name
+
+Add to Group
+sudo adduser name_user group_name
+Ex. sudo adduser name_user sudo
+
+Check hostname
+hostname
+
+Replace Hostname
+sudo nano /etc/hostname
+sudo nano /etc/hosts
+
+Check all partitions
+lsblk
+
+Check Sudo Installed
+which sudo
+dpkg -s sudo - Best to see package installed
+
+Check Password Policy
+nano /etc/sudoers.d/sudo_config
+
+Check Sudo Logs
+cd /var/log/sudo
+cat sudo_config
