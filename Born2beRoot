@@ -1,12 +1,3 @@
-Machine Settings
-
-Hostname: joseferr42
-Username: joseferr
-Passwords: hi@42Porto
-Passphrase: Encrypt42Passphrase
-
-
-
 Confirmar grupos de user
 getent group nome_grupo
 
@@ -115,6 +106,8 @@ sudo crontab -u root -e
 sudo /etc/init.d/cron stop
 sudo /etc/init.d/cron start
 sudo systemctl disable crontab
+Check working Crontabs
+sudo crontab -u root -l
 
 Check Groups
 getent group sudo
